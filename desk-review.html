@@ -9,7 +9,7 @@
 :root{--orange:#ff4b0b;--ink:#111;--grey:#66707a;--line:#c8cdd2;--soft:#f7f7f5}
 body{margin:0;background:#ececea;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 .sheet{max-width:900px;margin:24px auto;background:#fff;padding:26px 30px;box-shadow:0 2px 16px #0002}
-.logo{display:block;width:min(520px,70%);height:auto;margin:0 0 12px}
+.logo{display:block;width:min(364px,49%);height:auto;margin:0 0 12px}
 .title-row{display:flex;align-items:end;justify-content:space-between;gap:18px;border-bottom:4px solid var(--orange);padding-bottom:10px;margin-bottom:14px}
 h1{font-size:34px;line-height:1;margin:0}
 .date-wrap{width:210px}
@@ -37,17 +37,17 @@ button{border:0;border-radius:6px;background:var(--orange);color:#fff;font-weigh
 .small-note{font-size:12px;color:#666;margin:8px 0 0}
 @media(max-width:680px){
  .sheet{margin:0;padding:18px;box-shadow:none}
- .logo{width:92%;max-width:520px}
+ .logo{width:64%;max-width:364px}
  .title-row{display:block} .date-wrap{width:100%;margin-top:14px}
  h1{font-size:29px} .heading{grid-template-columns:54px 1fr;gap:10px}
  .num{font-size:21px} .response{display:block} .response textarea{margin-top:9px}
  .photo-box,.photo-box.evidence{min-height:260px}
 }
-@page{size:A4;margin:8mm}
+@page{size:A4;margin:7mm}
 @media print{
  body{background:#fff;font-size:8pt;line-height:1.1}
  .sheet{max-width:none;margin:0;padding:0;box-shadow:none}
- .logo{width:82mm;margin:0 0 3mm}
+ .logo{width:57.4mm;margin:0 0 2mm}
  .title-row{padding-bottom:2mm;margin-bottom:2mm;border-bottom:1.5mm solid var(--orange)}
  h1{font-size:20pt} .date-wrap{width:45mm}
  label{font-size:7.5pt;margin-bottom:1mm}
@@ -61,8 +61,8 @@ button{border:0;border-radius:6px;background:var(--orange);color:#fff;font-weigh
  .photo-box{border:0;background:#fff;min-height:0;padding:0}
  .photo-box.evidence{min-height:0}
  .photo-actions,.actions,.small-note{display:none!important}
- .preview{display:block;max-width:100%;max-height:48mm;margin:1mm auto 0}
- .desk .preview{max-height:55mm}
+ .preview{display:block;max-width:100%;max-height:44mm;margin:1mm auto 0}
+ .desk .preview{max-height:50mm}
  .preview:not([src]),.preview[src=""]{display:none!important}
  .response{grid-template-columns:57mm 1fr;gap:3mm}
  textarea{min-height:0!important;height:auto;overflow:hidden;resize:none}
@@ -82,7 +82,10 @@ button{border:0;border-radius:6px;background:var(--orange);color:#fff;font-weigh
 <section class="section first desk">
  <div class="heading"><div class="num">01</div><div><h2>Desk Photo</h2><p class="prompt">Capture where your work is now.</p><p class="reminder">Also save this image in your Desk Review digital folder.</p></div></div>
  <div class="photo-box">
-   <div class="photo-actions"><label for="deskPhoto">Add / take desk photo</label><input id="deskPhoto" type="file" accept="image/*"></div>
+   <div class="photo-actions">
+<label for="deskPhoto">Choose from gallery</label><input id="deskPhoto" type="file" accept="image/*">
+<label for="deskCamera">Take photo</label><input id="deskCamera" type="file" accept="image/*" capture="environment">
+</div>
    <img id="deskPreview" class="preview" alt="Desk photo">
  </div>
 </section>
@@ -100,7 +103,10 @@ button{border:0;border-radius:6px;background:var(--orange);color:#fff;font-weigh
 <section class="section">
  <div class="heading"><div class="num">04</div><div><h2>Evidence of the Week</h2></div></div>
  <div class="photo-box evidence">
-   <div class="photo-actions"><label for="evidencePhoto">Add / take evidence photo</label><input id="evidencePhoto" type="file" accept="image/*"></div>
+   <div class="photo-actions">
+<label for="evidencePhoto">Choose from gallery</label><input id="evidencePhoto" type="file" accept="image/*">
+<label for="evidenceCamera">Take photo</label><input id="evidenceCamera" type="file" accept="image/*" capture="environment">
+</div>
    <img id="evidencePreview" class="preview" alt="Evidence of the week">
  </div>
 </section>
@@ -129,7 +135,9 @@ function bindPhoto(inputId, previewId){
  });
 }
 bindPhoto('deskPhoto','deskPreview');
+bindPhoto('deskCamera','deskPreview');
 bindPhoto('evidencePhoto','evidencePreview');
+bindPhoto('evidenceCamera','evidencePreview');
 
 function preparePrint(){
  document.querySelectorAll('textarea').forEach(t=>{
